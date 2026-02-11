@@ -27,14 +27,14 @@ SECTIONS
         LONG(_stack_top)
 
         /* 다음 4바이트: 리셋 핸들러 주소 (진입점) */
-        LONG(Reset + 1)       /* +1: Thumb 모드 표시 */
+        LONG(Reset)       /* Thumb 모드 표시 */
 
         /* 나머지 예외 핸들러들 (일단 간단히) */
-        LONG(DefaultHandler + 1)   /* NMI */
-        LONG(DefaultHandler + 1)   /* HardFault */
-        LONG(DefaultHandler + 1)   /* MemManage */
-        LONG(DefaultHandler + 1)   /* BusFault */
-        LONG(DefaultHandler + 1)   /* UsageFault */
+        LONG(DefaultHandler)   /* NMI */
+        LONG(DefaultHandler)   /* HardFault */
+        LONG(DefaultHandler)   /* MemManage */
+        LONG(DefaultHandler)   /* BusFault */
+        LONG(DefaultHandler)   /* UsageFault */
     } > FLASH
 
     /* ============================================ */
