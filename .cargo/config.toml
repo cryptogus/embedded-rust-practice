@@ -1,0 +1,14 @@
+[build]
+# 기본 빌드 타겟을 ARM Cortex-M3로 설정
+# 이제 cargo build만 해도 ARM용으로 빌드됨
+target = "thumbv7m-none-eabi"
+
+[target.thumbv7m-none-eabi]
+# 링커에게 우리의 링커 스크립트를 사용하라고 지시
+rustflags = [
+    "-C", "link-arg=-Tmemory.x",     # 우리가 만든 링커 스크립트
+    "-C", "link-arg=--nmagic",        # 페이지 정렬 비활성화 (임베디드에선 불필요)
+]
+
+# QEMU로 실행할 때 사용할 명령
+runner = "qemu-system-arm -cpu cortex-m3 -machine lm3s6965evb -nographic -semihosting-config enable=on,target=native -kernel"
